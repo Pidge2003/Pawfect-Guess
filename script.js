@@ -1,55 +1,53 @@
-let currentBreed = "";
+let dogs = [];
+let currentDog = null;
 let attemptsLeft = 3;
 
-function loadDogImage() {
-  fetch("https://dog.ceo/api/breeds/image/random")
-    .then(response => response.json())
-    .then(data => {
-      const imageUrl = data.message;
-      document.getElementById("dogImage").src = imageUrl;
+async function fetchDogs() {
+  try {
+    const res = await fetch("dogs.json");
+    dogs = await res.json();
+    loadDog();
+  } catch (err) {
+    console.error("Error loading dogs.json:", err);
+  }
+}
 
-      // Extract and format breed name
-      const parts = imageUrl.split("/");
-      const breedIndex = parts.indexOf("breeds") + 1;
-      currentBreed = parts[breedIndex];
+function loadDog() {
+  if (dogs.length === 0) return;
 
-      if (currentBreed.includes("-")) {
-        let [main, sub] = currentBreed.split("-");
-        currentBreed = `${sub} ${main}`;
-      }
+  // Pick a random dog from the list
+  const randomIndex = Math.floor(Math.random() * dogs.length);
+  currentDog = dogs[randomIndex];
 
-      currentBreed = currentBreed.toLowerCase();
+  // Update the image
+  const img = document.getElementById("dogImage");
+  img.src = currentDog.image;
 
-      // Reset game state
-      attemptsLeft = 3;
-      document.getElementById("breedInput").value = "";
-      document.getElementById("result").textContent = "";
-    });
+  // Reset UI
+  document.getElementById("breedInput").value = "";
+  document.getElementById("result").textContent = "";
+  attemptsLeft = 3;
 }
 
 function checkBreed() {
-  const userGuess = document.getElementById("breedInput").value.toLowerCase().trim();
-  const resultText = document.getElementById("result");
+  const input = document.getElementById("breedInput").value.toLowerCase().trim();
+  const result = document.getElementById("result");
 
-  if (userGuess === currentBreed) {
-    resultText.textContent = "🐾 Correct! Loading next dog...";
-    resultText.style.color = "green";
-
-    setTimeout(() => {
-      loadDogImage();
-    }, 1500);
+  if (input === currentDog.breed.toLowerCase()) {
+    result.textContent = "🎉 Correct! Loading new dog...";
+    result.style.color = "green";
+    setTimeout(loadDog, 1500);
   } else {
     attemptsLeft--;
 
     if (attemptsLeft > 0) {
-      resultText.textContent = `❌ Incorrect. You have ${attemptsLeft} attempt${attemptsLeft === 1 ? '' : 's'} left.`;
-      resultText.style.color = "orange";
+      result.textContent = `❌ Try again! ${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} left.`;
+      result.style.color = "orange";
     } else {
-      resultText.textContent = `😢 Out of attempts! It was "${currentBreed}".`;
-      resultText.style.color = "red";
+      result.textContent = `😔 Out of tries! The correct answer was "${currentDog.breed}".`;
+      result.style.color = "red";
     }
   }
 }
 
-// Load the first dog when the page loads
-window.onload = loadDogImage;
+window.onload = fetchDogs;
