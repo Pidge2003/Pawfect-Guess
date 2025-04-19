@@ -1,35 +1,80 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f8ff;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   
-  .container {
-    margin-top: 50px;
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  header {
+    background-color: #ffb347;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  main.container {
+    flex: 1;
+    text-align: center;
+    padding: 40px 20px;
   }
   
   img {
     max-width: 300px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 12px;
     margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
   
   input {
     padding: 10px;
     font-size: 16px;
-    width: 200px;
+    width: 220px;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
   }
   
   button {
-    padding: 10px 15px;
-    margin: 10px;
+    padding: 10px 20px;
     font-size: 16px;
+    margin: 15px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffa07a;
+    color: white;
     cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #ff7f50;
   }
   
   #result {
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 15px;
+  }
+  
+  footer {
+    background-color: #ffb347;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
   }
   
