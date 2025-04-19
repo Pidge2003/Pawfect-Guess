@@ -74,3 +74,14 @@ function updateStreakDisplay() {
 
 // Call fetchDogs on load
 window.onload = fetchDogs;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const breedInput = document.getElementById('breedInput');
+  
+    breedInput.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Stop form from submitting if inside a form
+        checkBreed(); // Submit guess
+      }
+    });
+  });
