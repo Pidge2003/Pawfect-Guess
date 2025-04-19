@@ -1,6 +1,7 @@
 let dogs = [];
 let currentDog = null;
 let attemptsLeft = 3;
+let streak = 0; // Streak tracking variable
 
 async function fetchDogs() {
   try {
@@ -22,6 +23,9 @@ function loadDog() {
   document.getElementById("breedInput").value = "";
   document.getElementById("result").textContent = "";
   attemptsLeft = 3;
+  
+  // Update streak display
+  document.getElementById("streakCount").textContent = streak;
 }
 
 function checkBreed() {
@@ -29,6 +33,8 @@ function checkBreed() {
   const result = document.getElementById("result");
 
   if (input === currentDog.breed.toLowerCase()) {
+    // Correct guess - increase streak
+    streak++;
     result.textContent = "🎉 Correct!";
     result.style.color = "green";
 
@@ -44,10 +50,26 @@ function checkBreed() {
       result.textContent = `😔 Out of tries! It was "${currentDog.breed}".`;
       result.style.color = "red";
 
-      // Move to next dog after a short delay
+      // Reset streak and move to next dog after a short delay
+      streak = 0;
       setTimeout(loadDog, 2000);
     }
   }
+
+  // Update streak display
+  document.getElementById("streakCount").textContent = streak;
+}
+
+// Reset streak when user clicks "Next Dog"
+function nextDog() {
+  streak = 0; // Reset streak
+  updateStreakDisplay();
+  loadDog();
+}
+
+// Update streak display
+function updateStreakDisplay() {
+  document.getElementById("streakCount").textContent = streak;
 }
 
 // Call fetchDogs on load
