@@ -15,15 +15,10 @@ async function fetchDogs() {
 function loadDog() {
   if (dogs.length === 0) return;
 
-  // Pick a random dog from the list
   const randomIndex = Math.floor(Math.random() * dogs.length);
   currentDog = dogs[randomIndex];
 
-  // Update the image
-  const img = document.getElementById("dogImage");
-  img.src = currentDog.image;
-
-  // Reset UI
+  document.getElementById("dogImage").src = currentDog.image;
   document.getElementById("breedInput").value = "";
   document.getElementById("result").textContent = "";
   attemptsLeft = 3;
@@ -34,9 +29,11 @@ function checkBreed() {
   const result = document.getElementById("result");
 
   if (input === currentDog.breed.toLowerCase()) {
-    result.textContent = "🎉 Correct! Loading new dog...";
+    result.textContent = "🎉 Correct!";
     result.style.color = "green";
-    setTimeout(loadDog, 1500);
+
+    // Move to next dog after a short delay
+    setTimeout(loadDog, 1000);
   } else {
     attemptsLeft--;
 
@@ -44,10 +41,14 @@ function checkBreed() {
       result.textContent = `❌ Try again! ${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} left.`;
       result.style.color = "orange";
     } else {
-      result.textContent = `😔 Out of tries! The correct answer was "${currentDog.breed}".`;
+      result.textContent = `😔 Out of tries! It was "${currentDog.breed}".`;
       result.style.color = "red";
+
+      // Move to next dog after a short delay
+      setTimeout(loadDog, 2000);
     }
   }
 }
 
+// Call fetchDogs on load
 window.onload = fetchDogs;
