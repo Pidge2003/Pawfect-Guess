@@ -14,7 +14,7 @@
   }
   
   header {
-    background-color: #ffb347;
+    background-color: #411900;
     color: white;
     padding: 20px;
     text-align: center;
@@ -58,14 +58,14 @@
     margin: 15px 10px;
     border: none;
     border-radius: 8px;
-    background-color: #ffa07a;
+    background-color: #AB8476;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
   }
   
   button:hover {
-    background-color: #ff7f50;
+    background-color: #C4A79C;
   }
   
   #result {
@@ -74,7 +74,7 @@
   }
   
   footer {
-    background-color: #ffb347;
+    background-color: #411900;
     color: white;
     text-align: center;
     padding: 15px;
