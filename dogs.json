@@ -1,0 +1,44 @@
+[
+    {
+      "breed": "golden retriever",
+      "image": "assets/golden_retriever.jpg"
+    },
+    {
+      "breed": "labrador",
+      "image": "assets/labrador.jpg"
+    },
+    {
+      "breed": "german shepherd",
+      "image": "assets/german_shepherd.jpg"
+    },
+    {
+      "breed": "beagle",
+      "image": "assets/beagle.jpg"
+    },
+    {
+      "breed": "bulldog",
+      "image": "assets/bulldog.jpg"
+    },
+    {
+      "breed": "poodle",
+      "image": "assets/poodle.jpg"
+    },
+    {
+      "breed": "shiba inu",
+      "image": "assets/shiba_inu.jpg"
+    },
+    {
+      "breed": "dachshund",
+      "image": "assets/dachshund.jpg"
+    },
+    {
+      "breed": "rottweiler",
+      "image": "assets/rottweiler.jpg"
+    },
+    {
+      "breed": "border collie",
+      "image": "assets/border_collie.jpg"
+    }
+  ]
+  
+  
