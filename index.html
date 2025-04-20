@@ -4,30 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pawfect Guess</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <h1>🐾 Pawfect Guess 🐾</h1>
-    <p>Can you guess the dog breed?</p>
+    <p>Test your dog breed knowledge!</p>
   </header>
 
   <main class="container">
-    <div class="timer">
-        <button id="startTimerBtn">Start 2-Min Timer</button>
-        <div id="timerDisplay">2:00</div>
+    <div class="game-stats">
+      <div class="stat-item">
+        <div class="stat-label">Lives</div>
+        <div class="stat-value" id="livesDisplay">❤️❤️❤️</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Timer</div>
+        <div class="stat-value" id="timerDisplay">2:00</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Streak</div>
+        <div class="stat-value" id="streakCount">0</div>
+      </div>
     </div>
-    <div id="livesDisplay">❤️ Lives: 3</div>
-    <p>Current Streak: <span id="streakCount">0</span></p>
-    <img id="dogImage" src="" alt="Random Dog">
-    <input type="text" id="breedInput" placeholder="Enter dog breed...">
-    <button onclick="checkBreed()">Submit</button>
+    
+    <button id="startTimerBtn">Start 2-Min Challenge!</button>
+    
+    <div class="dog-container">
+      <div class="paw-print paw1">🐾</div>
+      <img id="dogImage" src="" alt="Random Dog">
+      <div class="paw-print paw2">🐾</div>
+    </div>
+    
+    <div class="guess-form">
+      <input type="text" id="breedInput" placeholder="What breed is this dog?">
+      <button onclick="checkBreed()">Submit Guess</button>
+    </div>
+    
     <p id="result"></p>
-    <!-- <button onclick="loadDog()">Next Dog</button> -->
   </main>
 
   <footer>
-    <p>&copy; 2025 Pawfect Guess. All rights reserved. 🐶</p>
+    <p>&copy; 2025 Pawfect Guess | Made with ❤️ for dog lovers</p>
   </footer>
 
   <script src="script.js"></script>
