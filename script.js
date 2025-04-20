@@ -1,9 +1,9 @@
 let dogs = [];
 let currentDog = null;
-let attemptsLeft = 3;
+let livesLeft = 3;
 let streak = 0;
-let recentDogs = []; // Track recently shown dogs
-const RECENT_LIMIT = 10; // Max number of dogs to keep in recent list
+let recentDogs = [];
+const RECENT_LIMIT = 10;
 
 async function fetchDogs() {
   try {
@@ -19,7 +19,6 @@ async function fetchDogs() {
 
 function loadDog() {
   if (dogs.length === 0) {
-    // Recycle some of the oldest recent dogs
     dogs = recentDogs.splice(0, Math.floor(RECENT_LIMIT / 2));
   }
 
@@ -29,22 +28,23 @@ function loadDog() {
   }
 
   const randomIndex = Math.floor(Math.random() * dogs.length);
-  currentDog = dogs.splice(randomIndex, 1)[0]; // Remove from pool
-
+  currentDog = dogs.splice(randomIndex, 1)[0];
   recentDogs.push(currentDog);
+
   if (recentDogs.length > RECENT_LIMIT) {
-    recentDogs.shift(); // Keep recentDogs within limit
+    recentDogs.shift();
   }
 
   document.getElementById("dogImage").src = currentDog.image;
   document.getElementById("breedInput").value = "";
   document.getElementById("result").textContent = "";
-  attemptsLeft = 3;
-  
   document.getElementById("streakCount").textContent = streak;
+  updateLivesDisplay();
 }
 
 function checkBreed() {
+  if (livesLeft <= 0 || timeLeft <= 0) return;
+
   const input = document.getElementById("breedInput").value.toLowerCase().trim();
   const result = document.getElementById("result");
 
@@ -52,18 +52,21 @@ function checkBreed() {
     streak++;
     result.textContent = "🎉 Correct!";
     result.style.color = "green";
-    setTimeout(loadDog, 5000);
+    setTimeout(loadDog, 2000);
   } else {
-    attemptsLeft--;
+    livesLeft--;
 
-    if (attemptsLeft > 0) {
-      result.textContent = `❌ Try again! ${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} left.`;
+    if (livesLeft > 0) {
+      result.textContent = `❌ Wrong! ${livesLeft} live${livesLeft === 1 ? "" : "s"} left.`;
       result.style.color = "orange";
+      updateLivesDisplay();
     } else {
-      result.textContent = `😔 Out of tries! It was "${currentDog.breed}".`;
+      result.textContent = `😔 Game over! It was "${currentDog.breed}".`;
       result.style.color = "red";
       streak = 0;
-      setTimeout(loadDog, 2000);
+      updateLivesDisplay();
+      clearInterval(timerInterval);
+      document.getElementById("breedInput").disabled = true;
     }
   }
 
@@ -72,6 +75,10 @@ function checkBreed() {
 
 function updateStreakDisplay() {
   document.getElementById("streakCount").textContent = streak;
+}
+
+function updateLivesDisplay() {
+  document.getElementById("livesDisplay").textContent = `❤️ Lives: ${livesLeft}`;
 }
 
 window.onload = fetchDogs;
@@ -86,13 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Timer logic
 let timerInterval;
-let timeLeft = 120; // 2 minutes in seconds
+let timeLeft = 120;
 
 function startTimer() {
-  clearInterval(timerInterval); // Clear any existing timer
+  clearInterval(timerInterval);
   timeLeft = 120;
+  livesLeft = 3;
+  streak = 0;
+  document.getElementById("breedInput").disabled = false;
   updateTimerDisplay();
+  updateLivesDisplay();
+  loadDog();
 
   timerInterval = setInterval(() => {
     timeLeft--;
@@ -101,8 +114,7 @@ function startTimer() {
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       document.getElementById("timerDisplay").textContent = "⏰ Time's up!";
-      // Optionally, disable input or load next dog
-      // document.getElementById("breedInput").disabled = true;
+      document.getElementById("breedInput").disabled = true;
     }
   }, 1000);
 }
@@ -114,6 +126,4 @@ function updateTimerDisplay() {
     `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-// Attach event to the button
 document.getElementById("startTimerBtn").addEventListener("click", startTimer);
-
