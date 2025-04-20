@@ -4,6 +4,7 @@ let livesLeft = 3;
 let streak = 0;
 let recentDogs = [];
 const RECENT_LIMIT = 10;
+let resultTimeout;
 
 async function fetchDogs() {
   try {
@@ -37,7 +38,7 @@ function loadDog() {
 
   document.getElementById("dogImage").src = currentDog.image;
   document.getElementById("breedInput").value = "";
-  document.getElementById("result").textContent = "";
+  clearResultMessage();
   document.getElementById("streakCount").textContent = streak;
   updateLivesDisplay();
 }
@@ -48,29 +49,51 @@ function checkBreed() {
   const input = document.getElementById("breedInput").value.toLowerCase().trim();
   const result = document.getElementById("result");
 
+  // Clear any existing timeout for result message
+  clearTimeout(resultTimeout);
+
   if (input === currentDog.breed.toLowerCase()) {
     streak++;
-    result.textContent = "🎉 Correct!";
-    result.style.color = "green";
-    setTimeout(loadDog, 2000);
+    showResultMessage("🎉 Correct!", "correct");
+    setTimeout(loadDog, 1500);
   } else {
     livesLeft--;
+    updateLivesDisplay();
 
     if (livesLeft > 0) {
-      result.textContent = `❌ Wrong! ${livesLeft} live${livesLeft === 1 ? "" : "s"} left.`;
-      result.style.color = "orange";
-      updateLivesDisplay();
+      showResultMessage(`❌ Wrong! It was "${currentDog.breed}".`, "incorrect");
+      setTimeout(loadDog, 1500);
     } else {
-      result.textContent = `😔 Game over! It was "${currentDog.breed}".`;
-      result.style.color = "red";
+      showResultMessage(`😔 Game over! It was "${currentDog.breed}".`, "incorrect", false); // Don't auto-hide game over message
       streak = 0;
-      updateLivesDisplay();
       clearInterval(timerInterval);
       document.getElementById("breedInput").disabled = true;
     }
   }
 
   document.getElementById("streakCount").textContent = streak;
+}
+
+function showResultMessage(message, className, autoHide = true) {
+  const result = document.getElementById("result");
+  result.textContent = message;
+  result.className = className;
+  result.style.opacity = "1";
+  
+  // Set timeout to hide the message after 3 seconds if autoHide is true
+  if (autoHide) {
+    resultTimeout = setTimeout(() => {
+      result.style.opacity = "0";
+    }, 3000);
+  }
+}
+
+function clearResultMessage() {
+  const result = document.getElementById("result");
+  result.textContent = "";
+  result.className = "";
+  result.style.opacity = "0";
+  clearTimeout(resultTimeout);
 }
 
 function updateStreakDisplay() {
@@ -115,6 +138,7 @@ function startTimer() {
       clearInterval(timerInterval);
       document.getElementById("timerDisplay").textContent = "⏰ Time's up!";
       document.getElementById("breedInput").disabled = true;
+      showResultMessage(`Time's up! Final score: ${streak}`, "incorrect", false); // Don't auto-hide time's up message
     }
   }, 1000);
 }
@@ -127,3 +151,11 @@ function updateTimerDisplay() {
 }
 
 document.getElementById("startTimerBtn").addEventListener("click", startTimer);
+
+// Focus the input field when a new dog is loaded
+function focusInput() {
+  document.getElementById("breedInput").focus();
+}
+
+// Add listener to dogImage to focus input when a new image is loaded
+document.getElementById("dogImage").addEventListener("load", focusInput);
