@@ -85,3 +85,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+let timerInterval;
+let timeLeft = 120; // 2 minutes in seconds
+
+function startTimer() {
+  clearInterval(timerInterval); // Clear any existing timer
+  timeLeft = 120;
+  updateTimerDisplay();
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      document.getElementById("timerDisplay").textContent = "⏰ Time's up!";
+      // Optionally, disable input or load next dog
+      // document.getElementById("breedInput").disabled = true;
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  document.getElementById("timerDisplay").textContent =
+    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Attach event to the button
+document.getElementById("startTimerBtn").addEventListener("click", startTimer);
+

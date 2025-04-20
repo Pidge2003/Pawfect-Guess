@@ -73,6 +73,12 @@
     font-size: 18px;
     margin-top: 15px;
   }
+
+  .timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   footer {
     background-color: #411900;
