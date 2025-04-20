@@ -1,110 +1,110 @@
 [
     {
       "breed": "Staffordshire Terrier",
-      "image": "assets/American Staffordshire Terrier.jpg"
+      "image": "/assets/American Staffordshire Terrier.jpg"
     },
     {
       "breed": "Saluki",
-      "image": "assets/Animal Company Dog.jpg"
+      "image": "/assets/Animal Company Dog.jpg"
     },
     {
       "breed": "Beagle",
-      "image": "assets/Beagle Pack Dog Portrait.jpg"
+      "image": "/assets/Beagle Pack Dog Portrait.jpg"
     },
     {
       "breed": "Border Terrier",
-      "image": "assets/Border Terrier Dog.jpg"
+      "image": "/assets/Border Terrier Dog.jpg"
     },
     {
       "breed": "Bulldog",
-      "image": "assets/Bulldog.jpg"
+      "image": "/assets/Bulldog.jpg"
     },
     {
       "breed": "Corgi",
-      "image": "assets/Corgi Dog Pembroke Welsh.jpg"
+      "image": "/assets/Corgi Dog Pembroke Welsh.jpg"
     },
     {
       "breed": "Dachshund",
-      "image": "assets/Dachshund Dog Photo.jpg"
+      "image": "/assets/Dachshund Dog Photo.jpg"
     },
     {
       "breed": "Dalmatian",
-      "image": "assets/Dalmatian Dog Photo.jpg"
+      "image": "/assets/Dalmatian Dog Photo.jpg"
     },
     {
       "breed": "Appenzeller Sennenhund",
-      "image": "assets/Dog Beach Sea.jpg"
+      "image": "/assets/Dog Beach Sea.jpg"
     },
     {
       "breed": "Chow Chow",
-      "image": "assets/Dog Chow Pet.jpg"
+      "image": "/assets/Dog Chow Pet.jpg"
     },
     {
       "breed": "American Bulldog",
-      "image": "assets/Dog Pet Canine.jpg"
+      "image": "/assets/Dog Pet Canine.jpg"
     },
     {
       "breed": "Cavalier King Charles Spaniel",
-      "image": "assets/Dog Pet Puppy.jpg"
+      "image": "/assets/Dog Pet Puppy.jpg"
     },
     {
       "breed": "Pomeranian",
-      "image": "assets/Dog Puppy Pet.jpg"
+      "image": "/assets/Dog Puppy Pet.jpg"
     },
     {
       "breed": "German Shepherd",
-      "image": "assets/German Shepherd Dog.jpg"
+      "image": "/assets/German Shepherd Dog.jpg"
     },
     {
       "breed": "Golden Retriever",
-      "image": "assets/Golden Retriever Dog.jpg"
+      "image": "/assets/Golden Retriever Dog.jpg"
     },
     {
       "breed": "Great Dane",
-      "image": "assets/Great Dane Portrait.jpg"
+      "image": "/assets/Great Dane Portrait.jpg"
     },
     {
       "breed": "Greyhound",
-      "image": "assets/Greyhound Dog Photo.jpg"
+      "image": "/assets/Greyhound Dog Photo.jpg"
     },
     {
       "breed": "Husky",
-      "image": "assets/Husky.jpg"
+      "image": "/assets/Husky.jpg"
     },
     {
       "breed": "Jack Russell",
-      "image": "assets/Jack Russell Dog.jpg"
+      "image": "/assets/Jack Russell Dog.jpg"
     },
     {
       "breed": "Labrador",
-      "image": "assets/Labrador Dog Photo.jpg"
+      "image": "/assets/Labrador Dog Photo.jpg"
     },
     {
       "breed": "Yorkshire Terrier",
-      "image": "assets/Puppy Yorkie Dog.jpg"
+      "image": "/assets/Puppy Yorkie Dog.jpg"
     },
     {
       "breed": "Rhodesian Ridgeback",
-      "image": "assets/Rhodesian Ridgeback Dog Guard.jpg"
+      "image": "/assets/Rhodesian Ridgeback Dog Guard.jpg"
     },
     {
       "breed": "Rottweiler",
-      "image": "assets/Rottweiler Dog Photo.jpg"
+      "image": "/assets/Rottweiler Dog Photo.jpg"
     },
     {
-      "breed": "White Swiss Shepard",
-      "image": "assets/Shepherd Dog White.jpg"
+      "breed": "White Swiss Shepherd",
+      "image": "/assets/Shepherd Dog White.jpg"
     },
     {
       "breed": "Shetland Sheepdog",
-      "image": "assets/Shetland Sheepdog Photo.jpg"
+      "image": "/assets/Shetland Sheepdog Photo.jpg"
     },
     {
       "breed": "Shiba Inu",
-      "image": "assets/Shiba Inu Dog.jpg"
+      "image": "/assets/Shiba Inu Dog.jpg"
     },
     {
       "breed": "Weimaraner",
-      "image": "assets/Weimaraner Puppy Dog.jpg"
+      "image": "/assets/Weimaraner Puppy Dog.jpg"
     }
   ]
