@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pawfect Guess</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
     <h1>🐾 Pawfect Guess 🐾</h1>
-    <p>Can you guess the dog breed?</p>
+    <p>Test your dog breed knowledge under pressure!</p>
   </header>
 
-  <main class="container">
-    <p>Current Streak: <span id="streakCount">0</span></p>
-    <img id="dogImage" src="" alt="Random Dog">
-    <input type="text" id="breedInput" placeholder="Enter dog breed...">
-    <button onclick="checkBreed()">Submit</button>
-    <p id="result"></p>
-    <button onclick="loadDog()">Next Dog</button>
+  <!-- Start Screen -->
+  <section id="startScreen" class="screen">
+    <button id="startBtn">Start Game</button>
+  </section>
+
+  <!-- Game Area -->
+  <main id="gameScreen" class="screen hidden">
+    <div class="status-bar">
+      <div id="timer">⏱️ 60</div>
+      <div id="lives" class="lives">
+        <span class="paw">🐾</span>
+        <span class="paw">🐾</span>
+        <span class="paw">🐾</span>
+      </div>
+    </div>
+
+    <div class="game-content">
+      <img id="dogImage" src="" alt="Dog to guess" />
+      <input type="text" id="breedInput" placeholder="Enter dog breed..." />
+      <button id="submitBtn">Submit</button>
+      <p id="result"></p>
+    </div>
   </main>
+
+  <!-- Results Screen -->
+  <section id="resultScreen" class="screen hidden">
+    <h2>Game Over!</h2>
+    <p>You guessed <span id="correctCount">0</span> out of 15 dogs correctly!</p>
+
+    <div id="resultsList"></div>
+
+    <button onclick="startGame()">Play Again</button>
+  </section>
 
   <footer>
     <p>&copy; 2025 Pawfect Guess. All rights reserved. 🐶</p>

@@ -39,7 +39,7 @@ function checkBreed() {
     result.style.color = "green";
 
     // Move to next dog after a short delay
-    setTimeout(loadDog, 1000);
+    setTimeout(loadDog, 5000);
   } else {
     attemptsLeft--;
 
@@ -58,13 +58,6 @@ function checkBreed() {
 
   // Update streak display
   document.getElementById("streakCount").textContent = streak;
-}
-
-// Reset streak when user clicks "Next Dog"
-function nextDog() {
-  streak = 0; // Reset streak
-  updateStreakDisplay();
-  loadDog();
 }
 
 // Update streak display
