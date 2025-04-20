@@ -53,8 +53,7 @@
     border-radius: 8px;
   }
   
-  button,
-  #streakCount {
+  button {
     padding: 10px 20px;
     font-size: 16px;
     margin: 15px 10px;
