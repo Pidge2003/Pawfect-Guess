@@ -7,16 +7,32 @@ const RECENT_LIMIT = 10;
 let resultTimeout;
 
 async function fetchDogs() {
-  try {
-    const res = await fetch("dogs.json");
-    const allDogs = await res.json();
-    dogs = [...allDogs];
-    recentDogs = [];
-    loadDog();
-  } catch (err) {
-    console.error("Error loading dogs.json:", err);
+    try {
+      const res = await fetch("https://api.api-ninjas.com/v1/dogs?max=50", {
+        headers: {
+          'X-Api-Key': 'R4SZZGxNrOlsbLrnuxUBrA==peXDDRB35pvHXdNX'
+        }
+      });
+  
+      if (!res.ok) throw new Error(`API error: ${res.statusText}`);
+  
+      const allDogs = await res.json();
+  
+      // Since the API response does not include images, generate image URLs based on breed names
+      dogs = allDogs
+        .filter(dog => dog.name) // ensure name exists
+        .map(dog => ({
+          breed: dog.name,
+          image: `https://dog.ceo/api/breed/${dog.name.toLowerCase().replace(/\s+/g, '-')}/images/random`
+        }));
+  
+      recentDogs = [];
+      loadDog();
+    } catch (err) {
+      console.error("Error fetching dogs from API:", err);
+    }
   }
-}
+  
 
 function loadDog() {
   if (dogs.length === 0) {
